@@ -6,6 +6,7 @@ namespace Lab4
     {
         Product GetById(Guid id);
         List<Product> GetAll();
+        public Product Add(Product product);
         Product Save(Product product);
         Product Update(Product product);
         void DeleteByName(string name);

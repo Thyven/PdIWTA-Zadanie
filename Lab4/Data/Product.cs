@@ -1,24 +1,35 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Lab4
+namespace Lab4.Data
 {
     public class Product
     {
         public Product()
         {
+
         }
 
-        public Product(Guid id, string name, bool isAvailable)
+        public Product(Guid id, string name, bool isAvailable,string email, string telefon)
         {
             Id = id;
             Name = name;
             IsAvailable = isAvailable;
+            Email = email;
+            Telefon = telefon;
         }
 
         public Guid Id { get; set; }
-        [Required]
-        [StringLength(10)]
+        
+        
+        
         public string Name { get; set; }
+
         public bool IsAvailable { get; set; }
+
+        
+        public string Email { get; set; }
+        
+        
+        public string Telefon { get; set; }
     }
 }

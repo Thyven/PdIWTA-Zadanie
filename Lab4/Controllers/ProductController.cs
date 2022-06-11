@@ -1,5 +1,6 @@
 ﻿using Lab4.DTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lab4.Controllers
 {
@@ -15,6 +16,15 @@ namespace Lab4.Controllers
             this.productsRepository = productsRepository;
         }
 
+        [HttpPost]
+        [Authorize(Roles = "Admin,User")]
+        public IActionResult Post(Product product)
+        {
+            var produt = new Product(product.Id, product.Name, product.IsAvailable);
+            return Ok(productsRepository.Add(produt));
+
+        }
+
         [HttpGet("GetProducts")]
         public IEnumerable<Product> Get()
         {
@@ -22,9 +32,9 @@ namespace Lab4.Controllers
         }
 
         [HttpGet("PostProducts")]
-        public Product Post(Product product)
+        public Product Get(Guid product)
         {
-            return productsRepository.GetById(product.Id);
+            return productsRepository.GetById(product);
         }
 
         [HttpPost("AddProduct")]
@@ -46,6 +56,5 @@ namespace Lab4.Controllers
         {
             productsRepository.DeleteByName(name);
         }
-
     }
 }
